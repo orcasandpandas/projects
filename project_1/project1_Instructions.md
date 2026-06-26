@@ -12,7 +12,7 @@ This is an individual project due at the **end of Week 5**.
 
 | Tool | Purpose |
 |------|---------|
-| **Python** (`requests`) | Making parameterized HTTP requests to the Open-Meteo API |
+| **Python** (`hppx`) | Making parameterized HTTP requests to the Open-Meteo API |
 | **Python** (`pandas`) | Profiling, cleaning, and transforming raw JSON responses into structured tabular data |
 | **PostgreSQL** | Hosting the normalized relational database |
 | **SQL** (DDL / DML / SELECT) | Schema creation, data loading, and analytical querying |
