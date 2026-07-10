@@ -18,8 +18,8 @@ def get_weather():
             params = {
                 "latitude": city["lat"],
                 "longitude": city["lon"],
-                "start_date": "2023-01-01", # Pick your date range
-                "end_date": "2023-12-31",
+                "start_date": "2024-01-01", 
+                "end_date": "2024-12-31",
                 "daily": ["temperature_2m_max", "precipitation_sum", "wind_speed_10m_max"],
                 "timezone": "auto"
             }
@@ -29,6 +29,8 @@ def get_weather():
             
             data = response.json()
             data['city_name'] = city["name"]
+            data['latitude'] = city["lat"]  
+            data['longitude'] = city["lon"]
             all_city_data.append(data)
 
     with open("raw_weather_data.json", "w") as f:
