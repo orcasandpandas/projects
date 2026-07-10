@@ -3,12 +3,10 @@ import psycopg
 import pandas as pd
 import os
 
-DB_PARAMS = "dbname=weather_db user=postgres password=yourpassword host=localhost"
+DB_PARAMS = "user=postgres password=pass host=localhost"
 
 def get_sql_queries():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    sql_file_path = os.path.join(current_dir, '..', 'sql', 'insert.sql')
-    
+    sql_file_path = "/sql/insert.sql"
     with open(sql_file_path, 'r') as file:
         sql_content = file.read()
         
