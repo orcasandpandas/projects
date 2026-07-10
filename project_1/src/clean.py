@@ -1,21 +1,22 @@
 import pandas as pd
-import json
 
-def process_data(filepath="raw_weather_data.json"):
-    with open(filepath, "r") as f:
-        raw_data = json.load(f)
-        
+def process_data(raw_data):
     records = []
+    
     # Flatten the JSON
     for city_data in raw_data:
         city_name = city_data['city_name']
+        lat = city_data['latitude']
+        lon = city_data['longitude']
         daily = city_data['daily']
         
         # Loop through the days
         for i in range(len(daily['time'])):
             records.append({
                 "city_name": city_name,
-                "date": daily['time'][i],
+                "latitude": lat,
+                "longitude": lon,
+                "weather_date": daily['time'][i], # Note the column name change
                 "max_temp": daily['temperature_2m_max'][i],
                 "precip": daily['precipitation_sum'][i],
                 "wind_speed": daily['wind_speed_10m_max'][i]
@@ -29,7 +30,7 @@ def process_data(filepath="raw_weather_data.json"):
     print("\nDuplicate Rows:", df.duplicated().sum())
     print("\nValue Ranges:\n", df.describe())
     
-    df['date'] = pd.to_datetime(df['date'])
+    df['weather_date'] = pd.to_datetime(df['weather_date']).dt.date
     df = df.dropna() 
     
     return df
